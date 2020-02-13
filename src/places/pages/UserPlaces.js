@@ -5,10 +5,10 @@ import PlaceList from '../components/PlaceList';
 const DUMMY_PLACES = [
     {
         id: 'p1',
-        title: 'Haji Lane',
+        title: 'Haji Lane 2',
         description: 'Little Insadong',
         imageUrl:
-            'https://images.unsplash.com/photo-1555947970-15e7a8a0bb73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2989&q=80',
+            'https://images.unsplash.com/photo-1555947970-15e7a8a0bb73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2989&q=80&SameSite=None&secure',
         address: '42A Haji Ln, 2nd Floor, Singapore 189235',
         location: {
             lat: 1.3008978,
@@ -18,11 +18,11 @@ const DUMMY_PLACES = [
     },
     {
         id: 'p2',
-        title: 'Bugis Street',
+        title: 'Bugis Street 2',
         description:
             'Lively shopping street with dozens of apparel shops, food markets, souvenir stores & eateries.',
         imageUrl:
-            'https://images.unsplash.com/photo-1507694463612-f20c65096a1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+            'https://images.unsplash.com/photo-1507694463612-f20c65096a1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80SameSite=None&secure',
         address: '3 New Bugis Street, Singapore 188867',
         location: {
             lat: 1.3006044,
