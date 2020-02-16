@@ -5,6 +5,9 @@ const formReducer = (state, action) => {
         case 'INPUT_CHANGE':
             let formIsValid = true;
             for (const inputId in state.inputs) {
+                if (!state.inputs[inputId]) {
+                    continue; // this is to skip the validation if a field is undefined (eg name field in login mode)
+                }
                 if (inputId === action.inputId) {
                     formIsValid = formIsValid && action.isValid;
                 } else {
