@@ -17,16 +17,19 @@ import './Auth.css';
 const Auth = () => {
     const { login } = useContext(AuthContext);
     const [isLoginMode, setIsLoginMode] = useState(true);
-    const [formState, inputHandler, setFormData] = useForm({
-        email: {
-            value: '',
-            isValid: false
+    const [formState, inputHandler, setFormData] = useForm(
+        {
+            email: {
+                value: '',
+                isValid: false
+            },
+            password: {
+                value: '',
+                isValid: false
+            }
         },
-        password: {
-            value: '',
-            isValid: false
-        }
-    });
+        false
+    );
 
     const authSubmitHandler = event => {
         event.preventDefault();
