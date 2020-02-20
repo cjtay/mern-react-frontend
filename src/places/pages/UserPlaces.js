@@ -25,8 +25,8 @@ const DUMMY_PLACES = [
             'https://images.unsplash.com/photo-1507694463612-f20c65096a1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80SameSite=None&secure',
         address: '3 New Bugis Street, Singapore 188867',
         location: {
-            lat: 1.3006044,
-            lng: 103.8527043
+            lat: 1.3072293,
+            lng: 103.8293323
         },
         creator: 'u2'
     }
