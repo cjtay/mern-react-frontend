@@ -1,18 +1,24 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import Map from '../../shared/components/UIElements/Map';
-
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 import './PlaceItem.css';
 
 const PlaceItem = props => {
+    const auth = useContext(AuthContext);
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
     const { isLoggedin } = useContext(AuthContext);
     const [showMap, setShowMap] = useState(false);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const history = useHistory();
 
     const openMapHandler = () => {
         setShowMap(true);
@@ -30,13 +36,23 @@ const PlaceItem = props => {
         setShowConfirmModal(false);
     };
 
-    const confirmDeleteHandler = () => {
-        console.log('deleting');
+    const confirmDeleteHandler = async () => {
+        console.log('confirmDeleteHandler', props.id);
         setShowConfirmModal(false);
+        try {
+            const deletedPlace = await sendRequest(
+                `http://localhost:5000/api/places/${props.id}`,
+                'DELETE'
+            );
+            console.log('delete request sent', deletedPlace);
+
+            props.onDelete(props.id);
+        } catch (err) {}
     };
 
     return (
         <>
+            <ErrorModal error={error} onClear={clearError} />
             <Modal
                 show={showMap}
                 onCancel={closeMapHandler}
@@ -71,6 +87,7 @@ const PlaceItem = props => {
             </Modal>
             <li className="place-item">
                 <Card className="place-item__content">
+                    {isLoading && <LoadingSpinner asOverlay />}
                     <div className="place-item__image">
                         <img src={props.image} alt={props.title} />
                     </div>
