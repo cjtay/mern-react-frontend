@@ -15,10 +15,10 @@ import Auth from './users/pages/Auth';
 import { AuthContext } from './shared/context/auth-context';
 
 function App() {
-    const { isLoggedin } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     let routes;
 
-    if (isLoggedin) {
+    if (token) {
         routes = (
             <Switch>
                 <Route exact path="/">

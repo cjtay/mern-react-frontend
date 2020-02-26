@@ -1,28 +1,31 @@
 import React, { useState, useCallback, createContext } from 'react';
 
 export const AuthContext = createContext({
-    isLoggedin: false,
+    isLoggedIn: false,
+    token: null,
     userId: null,
     login: () => {},
     logout: () => {}
 });
 
 export function AuthProvider(props) {
-    const [isLoggedin, setIsloggedin] = useState(false);
-    const [userId, setUserId] = useState(null);
+    const [token, setToken] = useState();
+    const [userId, setUserId] = useState(false);
 
-    const login = useCallback(uid => {
-        setIsloggedin(true);
+    const login = useCallback((uid, token) => {
+        setToken(token);
         setUserId(uid);
     }, []);
 
     const logout = useCallback(() => {
-        setIsloggedin(false);
+        setToken(null);
         setUserId(null);
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedin, userId, login, logout }}>
+        <AuthContext.Provider
+            value={{ isLoggedIn: !!token, token, userId, login, logout }}
+        >
             {props.children}
         </AuthContext.Provider>
     );

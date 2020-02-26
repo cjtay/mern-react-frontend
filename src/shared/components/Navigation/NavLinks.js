@@ -6,15 +6,15 @@ import './NavLinks.css';
 
 const NavLinks = props => {
     const auth = useContext(AuthContext);
-    const { isLoggedin, logout } = useContext(AuthContext);
+    const { token, logout } = useContext(AuthContext);
     return (
-        <ul className='nav-links'>
+        <ul className="nav-links">
             <li>
-                <NavLink exact to='/'>
+                <NavLink exact to="/">
                     All USERS
                 </NavLink>
             </li>
-            {isLoggedin && (
+            {token && (
                 <>
                     <li>
                         <NavLink exact to={`/${auth.userId}/places`}>
@@ -22,7 +22,7 @@ const NavLinks = props => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to='/places/new'>
+                        <NavLink exact to="/places/new">
                             ADD PLACE
                         </NavLink>
                     </li>
@@ -31,9 +31,9 @@ const NavLinks = props => {
                     </li>
                 </>
             )}
-            {!isLoggedin && (
+            {!token && (
                 <li>
-                    <NavLink exact to='/auth'>
+                    <NavLink exact to="/auth">
                         AUTHENTICATE
                     </NavLink>
                 </li>

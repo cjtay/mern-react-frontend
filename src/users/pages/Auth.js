@@ -53,8 +53,8 @@ const Auth = () => {
                     }),
                     { 'Content-Type': 'application/json' }
                 );
-
-                auth.login(responseData.user.id);
+                console.log(responseData);
+                auth.login(responseData.userId, responseData.token);
             } catch (err) {
                 console.log(err);
             }
@@ -72,7 +72,7 @@ const Auth = () => {
                     formData
                 );
 
-                auth.login(responseData.user.id);
+                auth.login(responseData.userId, responseData.token);
             } catch (err) {}
         }
     };
@@ -110,49 +110,49 @@ const Auth = () => {
     return (
         <>
             <ErrorModal error={error} onClear={clearError} />
-            <Card className='authentication'>
+            <Card className="authentication">
                 {isLoading && <LoadingSpinner asOverlay />}
                 <h2> Login Required </h2>
                 <hr />
                 <form onSubmit={authSubmitHandler}>
                     {!isLoginMode && (
                         <Input
-                            element='input'
-                            id='name'
-                            type='text'
-                            label='Your Name for signup'
+                            element="input"
+                            id="name"
+                            type="text"
+                            label="Your Name for signup"
                             validators={[VALIDATOR_REQUIRE()]}
-                            errorText='Please enter a name'
+                            errorText="Please enter a name"
                             onInput={inputHandler}
                         />
                     )}
                     {!isLoginMode && (
                         <ImageUpload
                             center
-                            id='image'
+                            id="image"
                             onInput={inputHandler}
-                            errorText='Please provide an image'
+                            errorText="Please provide an image"
                         />
                     )}
                     <Input
-                        element='input'
-                        id='email'
-                        type='email'
-                        label='Email'
+                        element="input"
+                        id="email"
+                        type="email"
+                        label="Email"
                         validators={[VALIDATOR_EMAIL()]}
-                        errorText='Please enter a valid email address'
+                        errorText="Please enter a valid email address"
                         onInput={inputHandler}
                     />
                     <Input
-                        element='input'
-                        id='password'
-                        type='password'
-                        label='Password'
+                        element="input"
+                        id="password"
+                        type="password"
+                        label="Password"
                         validators={[VALIDATOR_MINLENGTH(6)]}
-                        errorText='Please enter a valid password (at least 6 characters)'
+                        errorText="Please enter a valid password (at least 6 characters)"
                         onInput={inputHandler}
                     />
-                    <Button type='submit' disabled={!formState.isValid}>
+                    <Button type="submit" disabled={!formState.isValid}>
                         {isLoginMode ? 'LOGIN' : 'SIGN UP'}
                     </Button>
                 </form>
