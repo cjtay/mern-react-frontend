@@ -15,7 +15,7 @@ const UserPlaces = props => {
         const fetchPlaces = async () => {
             try {
                 const responseData = await sendRequest(
-                    process.env.REACT_APP_BACKEND_URL + `/user/${userId}`
+                    process.env.REACT_APP_BACKEND_URL + `/${userId}/places`
                 );
                 setLoadedPlaces(responseData.places);
             } catch (err) {}
